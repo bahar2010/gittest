@@ -1,0 +1,280 @@
+<?php
+
+function getTimeline($count, $username) {
+    $url = 'http://api.twitter.com/1/statuses/user_timeline.json?screen_name=' . $username . '&count=' . $count;
+    $tweets = json_decode(file_get_contents($url), TRUE);
+
+    return $tweets;
+}
+
+//echo '<pre>';
+//print_r(getTimeline(5, 'winwinhost'))
+?>
+<head>
+
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/style.css">
+    <link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/responsive.css">
+    <link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/prettyPhoto.css">
+    <link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/flexslider.css">
+
+    <script src="http://new.winwinhost.com/wwwroot/scripts/jquery.min.js"></script>
+    <script src="http://new.winwinhost.com/wwwroot/scripts/jquery.bxSlider.min.js"></script>
+    <script src="http://new.winwinhost.com/wwwroot/scripts/jquery.blackandwhite.min.js"></script>
+    <script src="http://new.winwinhost.com/wwwroot/scripts/js_func.js"></script>
+    <script src="http://new.winwinhost.com/wwwroot/scripts/jquery.faq.js"></script>
+
+    <script>
+        $(function(){
+            $('.clients_slider').bxSlider({
+                auto: false,
+                controls : false,
+                mode: 'fade',
+                pager: true
+            });	
+            $('.recent_slider').bxSlider({
+                auto: false,
+                displaySlideQty: 1,
+                moveSlideQty: 1,
+                speed : 1000
+            });
+            $('#faq').dltoggle();
+            $("#open").click(function(event){
+                $('#faq').dltoggle_show();
+                return false;
+            });
+            $("#close").click(function(event){
+                $('#faq').dltoggle_hide();
+                return false;
+            });
+            $('.bwWrapper').BlackAndWhite({
+                hoverEffect : true,
+                webworkerPath : false,
+                responsive:true,
+                invertHoverEffect:false
+            });
+        })
+    </script>
+    <style type="text/css">
+        .bwWrapper1 {
+            border: 5px solid #F6F3F3;
+            float: left;
+            font-size: 0;
+            line-height: 0;
+            margin: 0 14px 5px 0;
+        }
+    </style>
+</head>
+
+<div class="content_block">
+    <!-- top_title -->
+    <div class="top_title">
+        <div class="wraper">
+            <h2>Our Blog <span>Keep up with the latest news, tips and features right here!</span></h2>
+            <ul>
+                <!--<li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li>Blog Post</li>-->
+            </ul>
+        </div>
+    </div>
+    <!-- /top_title -->
+    <div class="wraper">
+        <!-- blog entries -->
+        <div class="blog_entries">
+
+            <div class="post post_full">
+                <div class="img_wrap bwWrapper">
+                    <div class="date"><?php echo $this->data->news_posted; ?></div>
+                    <img src="http://new.winwinhost.com/wwwroot/uploads/newsimages/<?php echo $this->data->image; ?>" width="640" height="265" alt="" />
+                </div>
+                <div class="desc">
+                    <h4><?php echo $this->data->news_title; ?></h4>
+                    <p><?php echo $this->data->news_text; ?></p>
+                    <div class="metadata">
+                        <strong class="dots">....</strong>
+                        By <a href="#" style="text-transform: capitalize"><?php echo $this->data->member_username; ?></a>  |  <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'blog', 'action' => 'catagorysearch', 'cat_name' => $this->data->name)); ?>" style="text-transform: capitalize"><?php echo $this->data->name; ?></a> 
+                    </div>
+                </div>
+            </div>
+
+            <!-- /share story -->
+            <div class="share_story">
+                <h4>Share This Post!</h4>
+                <ul>
+                    <li><a class="facebook" href="#">facebook</a></li>
+                    <li><a class="tweeter" href="#">tweeter</a></li>
+                    <li><a class="in" href="#">in</a></li>
+                    <li><a class="baby" href="#">baby</a></li>
+                    <li><a class="rss" href="#">rss</a></li>
+                    <li><a class="google" href="#">google</a></li>
+                    <li><a class="www" href="#">www</a></li>
+                </ul>
+            </div>
+            <!-- /share story -->
+
+        </div>
+        <!-- /blog entries -->
+        <!-- sidebar -->
+        <div class="sidebar">
+            <!-- most popular -->
+            <div class="most_popular">
+                <h4>Recent Blog Posts</h4>
+                <ul>
+                    <?php
+                    foreach ($this->r_news as $key => $value) {
+                        ?>
+                        <li>
+                            <a href="<?php
+                    echo $this->url(array('module' => 'default',
+                        'controller' => 'blog',
+                        'action' => 'detail',
+                        'post_title' => $value->news_title,
+                    ));
+                        ?>">
+                                <div class="bwWrapper1">
+                                    <img src="http://new.winwinhost.com/wwwroot/uploads/newsimages/<?php echo $value->image; ?>" width="60" height="55" alt="" />
+                                </div>
+                            </a>
+                            <div class="desc">
+                                <p><strong><a href="<?php
+                           echo $this->url(array('module' => 'default',
+                               'controller' => 'blog',
+                               'action' => 'detail',
+                               'post_title' => $value->news_title,
+                           ));
+                        ?>"><?php echo $value->news_title; ?></a></strong></p>
+                                <p>  <?php echo $this->truncate($value->news_text, 30); ?>...</p>
+                                <p><span><?php echo date('M d, Y', strtotime($value->news_posted)); ?> <a href="#">By <?php echo $value->member_username; ?></a></span></p>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                    <!--     <li>
+                          <div class="bwWrapper"><a href="blog_post.html"></a></div>
+                          <div class="desc">
+                           <p><strong><a href="blog_post.html">Being Creative Work</a></strong></p>
+                           <p>Sectetut amet fermens ...</p>
+                           <p><span>February 15th 2012   <a href="#">By Crucio</a></span></p>
+                          </div>
+                         </li>
+                         <li>
+                          <div class="bwWrapper"><a href="blog_post.html"></a></div>
+                          <div class="desc">
+                           <p><strong><a href="blog_post.html">Being Creative Work</a></strong></p>
+                           <p>Sectetut amet fermens ...</p>
+                           <p><span>February 15th 2012   <a href="#">By Crucio</a></span></p>
+                          </div>
+                         </li>-->
+                </ul>
+            </div>
+            <!-- /most popular -->
+            <!-- acc tabs -->
+            <div class="acc_tabs">
+                <div id="tabs">
+                    <ul class="tab_select">
+                        <li><a href="#tab-1">Archives</a></li>
+                        <li><a href="#tab-2">Categories</a></li>
+                        <!--<li><a href="#tab-3">Comments</a></li>-->
+                    </ul>
+                    <div id="tab-1" style="padding-left: 25px;">
+                        <?php
+                        for ($j = date('n'); $j >= 1; $j--):
+                            ?>
+                            <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'blog', 'action' => 'monthsearch', 'month' => date("m", mktime(0, 0, 0, $j, 10)))); ?>" style="text-transform: capitalize"><?php echo date("F", mktime(0, 0, 0, $j, 10)); ?> <?php echo date('Y'); ?> (<?php
+                        if (isset($this->archive[$j])) {
+                            echo $this->archive[$j];
+                        } else {
+                            echo '0';
+                        }
+                            ?>
+                                )</a>
+                            <br/>
+                            <?php
+                        endfor;
+                        ?>
+                        <?php for ($i = 1; $i < 6; $i++): ?>
+                            <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'blog', 'action' => 'yearsearch', 'year' => date('Y') - $i)); ?>" style="text-transform: capitalize"><?php echo date('Y') - $i; ?></a>
+                            <br/>
+                            <?php
+                        endfor;
+                        ?>
+                    </div>
+                    <div id="tab-2" style="padding-left: 25px;">
+                        <!--      <ul>-->
+                        <?php foreach ($this->n_cat as $cat): ?>  
+                            <a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'blog', 'action' => 'catagorysearch', 'cat_name' => $cat['name'])); ?>" style="text-transform: capitalize"><?php echo $cat['name']; ?></a>
+                            <br/>
+                            <!--<li><a href="#">Cat 2</a></li>
+                            <li><a href="#">Cat 3</a></li>-->
+                        <?php endforeach; ?>
+                        <!--      </ul>-->
+                    </div>
+                    <!--<div id="tab-3">
+                     <ul>
+                      <li><a href="#">Some comment</a></li>
+                      <li><a href="#">Some comment2</a></li>
+                      <li><a href="#">Some comment3</a></li>
+                     </ul>
+                    </div>-->
+                </div>
+            </div>
+            <!-- /acc tabs -->
+            <!-- latest tweets -->
+            <div class="latest_tweets">
+                <h4>Latest From The Twittersphere</h4>
+                <ul>
+                    <?php
+                    $tweetlist = getTimeline(5, 'winwinhost');
+                    foreach ($tweetlist as $key => $value) {
+                        ?>          
+               <li><?php echo $value['text'];?><br /><a href="#">less than a minute ago</a></li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </div>
+            <!-- /latest tweets -->
+            <!-- our clients -->
+            <div class="our_clients">
+                <h4>Our Clients Just Love Us</h4>
+                <ul class="clients_slider">
+                    <li>
+                        <blockquote>
+                            <p>"Nam libero tempore, cum soluta nobis est eligendi optio cumque nihl impedit quois minus id quod maxime placeat facere rendus sit sadipsamets."</p>
+                            <p>Jane Doe, CEO of Imperio</p>
+                        </blockquote>
+                    </li>	
+                    <li>
+                        <blockquote>
+                            <p>"Cum soluta nobis est eligendi optio cumque nihl impedit quois minus id quod maxime placeait sadipsamets."</p>
+                            <p>Jane Doe, CEO of Imperio</p>
+                        </blockquote>
+                    </li>	
+                    <li>
+                        <blockquote>
+                            <p>"Libero tempore, cuendi optio cumque nihl impedit quois minus id quod maxime placeat facere rendus sit sadipsamets."</p>
+                            <p>Jane Doe, CEO of Imperio</p>
+                        </blockquote>
+                    </li>	
+                    <li>
+                        <blockquote>
+                            <p>"Nam libero tempore, cum soluta nobis es nihl impedit quois minus id quod maxime placeat facere rendus sit sadipsamets."</p>
+                            <p>Jane Doe, CEO of Imperio</p>
+                        </blockquote>
+                    </li>	
+                    <li>
+                        <blockquote>
+                            <p>"Am libero tempore, cum soluta nobis est eligendi optio cumque ipsamets."</p>
+                            <p>Jane Doe, CEO of Imperio</p>
+                        </blockquote>
+                    </li>	
+                </ul>   
+            </div>
+            <!-- /our clients -->
+
+        </div>
+        <!-- /sidebar -->
+    </div>
+</div>

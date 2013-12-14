@@ -1,0 +1,94 @@
+<head>
+
+</head>
+
+
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h2>Get In Touch<span>We're just an email or phone call away.  Fill out the form below and we'll be right with you!</span></h2>
+
+  </div>
+ </div>
+ <!-- /top_title -->
+ <div class="wraper">
+  <!-- contact_us -->
+  <div class="contact_us">
+   <h4>Get a FREE quote from The WinWinHost for guaranteed search 
+engine optimisation</h4>
+<!--   <div class="bwWrapper"><img src="images/contact_us/contact_us.png" width="640" height="265" alt="" /></div>-->
+   <div class="map_wrap"><img src="http://new.winwinhost.com/wwwroot/images/marketing/seoquote.jpg" title="Search Engine Optimization stack" alt="Search Engine Optimization" /></div>
+   <ul>          
+    <li>Address:<br /><br />Phone:<br />Email:Fax:<br />Fax:</li>
+    <li><strong>12830 Burbank Blvd<br />Valley Vlg, CA 91607<br />(800) 880-4295<br />support@winwinhost.com<br />-------------- </strong></li>
+    <li>We guaranteed SEO Services delivers results, making the decision to invest in search engine optimization an easy one. Our SEO team will provide a custom SEO quote, targeting the most relevant and best converting keywords in your niche. Our SEO proposals offer guaranteed first page rankings in Google within 60 days for the majority (typically seventy-five percent or more) of your target keywords.</li>
+   </ul> 
+   <h4>Just send us the following , and we will get back to you as soon as possible.</h4>
+   
+  
+
+   	<?php echo $this->ContactForm; ?>
+
+	<?php if(isset($this->message)): ?>
+	<?php echo $this->message; ?>
+  	<?php endif;?>
+  
+  	<br />
+    <br>
+  </div>
+  <!-- /contact_us -->
+  <!-- sidebar -->
+  <div class="sidebar">
+  
+  <div class="fb-like-box" data-href="http://www.facebook.com/phonetrackerdotnet" data-width="200" data-height="300"  data-show-faces="true" data-border-color="white" data-stream="false" data-header="false"></div>
+  
+  
+   <!-- most popular -->
+   <div class="most_popular">
+    <h4>Recent Posts from out Blog</h4>
+    <ul>
+    <?php
+               $this->blog();
+               ?>
+                
+     <?php
+        foreach ($this->latestblg as $data) {
+                    ?> 
+                    <li>
+      <a href="<?php
+                echo $this->url(array('module' => 'default',
+                    'controller' => 'blog',
+                    'action' => 'detail',
+                    'post_title' => $data['news_title'],
+                ));  ?>">
+                    <div class="bwWrapper"><img src="http://new.winwinhost.com/wwwroot/uploads/newsimages/<?php echo $data['image']; ?>" width="60" height="55" alt="" /></div>
+      <div class="desc">
+       <p><strong><?php echo $data['news_title']; ?></strong></p>
+       <p> </p>
+       <p><span><a href="<?php
+                echo $this->url(array('module' => 'default',
+                    'controller' => 'blog',
+                    'action' => 'detail',
+                    'post_title' => $data['news_title'],
+                ));  ?>"><?php echo $data['news_posted']; ?><a> </span></p>
+      </div>
+     </li>
+     <?php } ?> 
+     
+    
+    </ul>
+   </div>
+
+
+  </div>
+  <!-- /sidebar -->
+ </div>
+</div>
+
+
+
+
+
+
+

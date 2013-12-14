@@ -1,0 +1,31 @@
+<!-- <?php $role = Zend_Auth::getInstance()->getIdentity()->member_role; ?> -->
+<head>
+    <script type="text/javascript">
+        //adding load class to body and hide page
+        document.documentElement.className += 'loadstate';
+    </script>
+</head>
+<?php if ($role == 1): ?>
+    <div class="wraper">                
+        <div class="row-fluid">
+            <div class="span6" style="width: 70%;">
+                <div class="box">
+                    <div class="title">
+                        <h4>
+                            <span class="icon16 brocco-icon-grid"></span>
+                            <span>Update News</span>
+                        </h4>
+
+                    </div>
+                    <div class="content">
+                        <?php echo $this->form; ?>
+                    </div>
+
+                </div><!-- End .box -->
+
+            </div>
+
+        </div>
+
+    </div>
+<?php endif; ?>

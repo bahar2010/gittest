@@ -1,0 +1,111 @@
+ 	<!-- <?php	$role = Zend_Auth::getInstance()->getIdentity()->member_role;?> -->
+
+    <?php  if ($role == 1 ): ?>
+
+    <?php  elseif ($role == 2 ): ?>
+
+    <?php else:  ?> 
+    
+    
+<!--=== Style Switcher ===-->    
+<!--<i class="style-switcher-btn style-switcher-btn-option icon-cogs"></i>
+<div class="style-switcher style-switcher-inner">
+    <div class="theme-close"><i class="icon-remove"></i></div>
+    <div class="theme-heading">Theme Colors</div>
+    <ul class="unstyled">
+        <li class="theme-default theme-active" data-style="default" data-header="dark"></li>
+        <li class="theme-blue" data-style="blue" data-header="dark"></li>
+        <li class="theme-orange" data-style="orange" data-header="dark"></li>
+        <li class="theme-red" data-style="red" data-header="dark"></li>
+        <li class="theme-light" data-style="light" data-header="dark"></li>
+    </ul>
+</div><!--/style-switcher-->
+<!--=== End Style Switcher ===-->    
+
+<!--=== Top ===-->    
+<div class="top">
+    <div class="container">                 
+        <div class="row-fluid">
+            <ul class="loginbar inline">
+                <li><a href="mailto:support@hireremote.com"><i class="icon-envelope-alt"></i> support@hireremote.com</a></li> 
+                <li><a><i class="icon-phone-sign"></i> +1 (800) 880-4295</a></li>   
+                <li><a href="page_login.html"><i class="icon-user"></i> LOGIN</a></li> 
+            </ul>
+        </div>                        
+    </div><!--/container-->     
+</div><!--/top-->
+<!--=== End Top ===-->    
+
+<!--=== Header ===-->
+<div class="header">               
+    <div class="container"> 
+        <!-- Logo -->       
+        <div class="logo">                                             
+            <a href="<?php echo $this->url(array('module' => 'default','controller' => 'index','action' => 'index'));?>"><img id="logo-header" src="/assets/img/logo_test.png" alt="Logo" /></a>
+        </div><!-- /logo -->        
+                                    
+        <!-- Menu -->       
+        <div class="navbar">                                
+            <div class="navbar-inner">                                  
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a><!-- /nav-collapse -->                                  
+                <div class="nav-collapse collapse">                                     
+                    <ul class="nav">
+ 
+                        <li class="btn-u btn-u-blue">
+                            <a href="<?php echo $this->url(array('module' => 'default','controller' => 'find','action' => 'index'));?>" class="dropdown-toggle">Find <span>Nice Jobs</span>
+                                                           
+                            </a>
+                                       
+                        </li>
+                        
+                        <li class="btn-u btn-u-green">
+                            <a href="<?php echo $this->url(array('module' => 'default','controller' => 'hunt','action' => 'index'));?>" class="dropdown-toggle" >Hunt <span>Talented Workers</span>
+                                                  
+                            </a>
+                            <b class="caret-out"></b>                        
+                        </li>
+                        
+                        <li class="btn-u btn-u-red">
+                            <a href="<?php echo $this->url(array('module' => 'default','controller' => 'discover','action' => 'index'));?>" class="dropdown-toggle" >Discover <span>Great Projects</span>
+                                          
+                            </a>
+                                  
+                        </li>
+                          
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contact
+                                <b class="caret"></b>                            
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="page_contact.html">Contact Default</a></li>
+                                <li><a href="page_contact1.html">Contact Boxed Map</a></li>
+                            </ul>
+                            <b class="caret-out"></b>                        
+                        </li>
+                        <li><a class="search search-nav"><i class="icon-search search-btn"></i></a></li>                                
+                    </ul>
+                    <div class="search-open search-open-inner">
+                        <div class="input-append">
+                            <form />
+                              <select><option value="" disabled="disabled" selected="selected" /><option />
+                              Find a Nice Job<option />
+                              Hunt Good Workers<option />
+                              Discover Great Projects</option>
+                              </select> 
+                                <input type="text" class="span3" placeholder="Search" />
+                                <button type="submit" class="btn-u">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /nav-collapse -->                                
+            </div><!-- /navbar-inner -->
+        </div><!-- /navbar -->                          
+    </div><!-- /container -->               
+</div><!--/header -->      
+<!--=== End Header ===-->
+
+    <?php endif; ?>

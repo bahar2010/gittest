@@ -1,0 +1,55 @@
+<head>
+<script src="http://new.winwinhost.com/wwwroot/scripts/jquery.simpleFAQ-0.7.min.js"></script>  
+ 
+<script>
+$(function(){
+	$('#faq').simpleFAQ();
+});
+</script>
+</head>
+
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h2> Frequent Questions about Web Hosting , Reseller Hosting and Dedicated Servers  <span> We have collected the most frequently asked questions </span></h2>
+   <ul>
+    <!-- </a></li>
+    <li><a href="#">Pages</a></li>
+    <li>FAQ</li> -->
+   </ul>
+  </div>
+ </div>
+ <!-- /top_title -->
+ 
+ 
+ 
+ <div class="wraper">
+ <!-- /faq_list -->
+ <div class="faq_list">
+  <ul class="filter">
+   <li class="all"><a href="<?php echo $this->url(array('module' => 'default','controller' => 'faqs','action' => 'index'));?>">General</a></li>
+   <li class="active web-hosting"><a href="<?php echo $this->url(array('module' => 'default','controller' => 'faqs','action' => 'web-hosting'));?>">Web Hosting</a></li>
+   <li class="domain-names"><a href="<?php echo $this->url(array('module' => 'default','controller' => 'faqs','action' => 'domain-names'));?>">Domain Names</a></li>
+   <li class="online-marketing"><a href="<?php echo $this->url(array('module' => 'default','controller' => 'faqs','action' => 'online-marketing'));?>">Online Marketing</a></li>
+   <li class="web-design"><a href="<?php echo $this->url(array('module' => 'default','controller' => 'faqs','action' => 'web-design'));?>">Web Design/Development</a></li>
+  <!-- <?php foreach($this->data as $wfaqs): ?>
+   <li class="<?php echo $faqs['faq_category']; ?>"><a href="#<?php echo $faqs['faq_category']; ?>"><?php echo $faqs['faq_category']; ?></a></li>
+  <?php endforeach; ?>-->
+  </ul>
+  <ul id="faq">  
+   <?php foreach($this->data as $faqs): ?>
+   <li class="all <?php echo $faqs['faq_category'];?>">
+    <p class="question"><?php echo $faqs['faq_title']; ?></p>
+	<div class="answer">
+     <p><?php echo $faqs['faq_text']; ?></p>
+	</div>
+   </li>
+   <?php endforeach; ?>
+  </ul>
+ </div>
+ <!-- /faq_list -->
+  
+ </div>
+ 
+</div>

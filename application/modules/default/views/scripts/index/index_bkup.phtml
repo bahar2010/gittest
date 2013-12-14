@@ -1,0 +1,1028 @@
+<head>
+<style>
+
+.search_place_outer{
+	width:100%;
+	height:350px;
+	background-color:#9DC500; 
+	background-position:center;
+	background-repeat:no-repeat;
+	margin-top:0px;
+}
+
+.search_place_inner{
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:40px;
+
+}
+.left {
+	float:left;
+	}
+.right {
+	float:right;
+	}
+
+#searchForm{
+	/* The search form. */
+	background-color:#4C5A65;
+	padding:30px 50px 10px;
+	margin:0;
+	position:relative;
+
+	-moz-border-radius:16px;
+	-webkit-border-radius:16px;
+	border-radius:16px;
+}
+
+fieldset{
+	border:none;
+}
+
+#searchInputContainer{
+	/* This div contains the transparent search box */
+	width:470px;
+	height:36px;
+	background:url("img/searchBox.png") no-repeat;
+	float:left;
+	margin-right:12px;
+}
+
+#s{
+	/* The search text box. */
+	
+	border:none;
+	color:#888888;
+	background:url("img/searchBox.png") no-repeat;
+	
+	float:left;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:17px;
+	height:36px;
+	line-height:36px;
+	margin-right:12px;
+	outline:medium none;
+	padding:0 0 0 35px;
+	text-shadow:1px 1px 0 white;
+	width:425px;
+}
+
+/* The UL that contains the search type icons */
+
+.icons{
+	list-style:none;
+	margin:30px 0 0;
+	height:19px;
+	position:relative;
+	border-bottom: solid #D6D6D6 1px;
+	color:#F6F6F6;
+}
+
+.icons li{
+	background:url("img/icons.png") no-repeat;
+	float:left;
+	height:19px;
+	text-indent:-9999px;
+	cursor:pointer;
+	margin-right:5px;
+}
+
+/* Styling each icon */
+
+li.web{ width:15px;}
+li.web.active,
+li.web:hover{ background-position:left bottom;}
+
+li.images{ width:22px; background-position:-18px 0;}
+li.images.active,
+li.images:hover{ background-position:-18px bottom;}
+
+li.news{ width:14px; background-position:-44px 0;}
+li.news.active,
+li.news:hover{ background-position:-44px bottom;}
+
+li.videos{ width:17px; background-position:right 0;}
+li.videos.active,
+li.videos:hover{ background-position:right bottom;}
+
+span.arrow{
+	/* The little arrow that moves below the icons */
+	
+	width:11px;
+	height:6px;
+	margin:21px 0 0 5px;
+	position:absolute;
+	background:url('img/arrow.png') no-repeat;
+	left:0;
+}
+
+
+/* The submit button */
+
+
+#submitButton{
+	background:url('img/buttons.png') no-repeat;
+	width:83px;
+	height:36px;
+	text-indent:-9999px;
+	overflow:hidden;
+	text-transform:uppercase;
+	border:none;
+	cursor:pointer;
+}
+
+#submitButton:hover{
+	background-position:left bottom;
+}
+
+
+/*  Search the Web radio buttons */
+
+
+#searchInContainer{
+	float:left;
+	margin-top:12px;
+	width:290px;
+}
+
+label{
+	color:#DDDDDD;
+	cursor:pointer;
+	font-size:16px;
+	position:relative;
+	right:-2px;
+	top:-2px;
+	margin-right:10px;
+	white-space:nowrap;
+	/*float:left;*/
+}
+
+input[type=radio]{
+	cursor:pointer;
+	/*float:left;*/
+}
+</style>
+
+
+</head>
+
+
+<body class="home-page">
+
+	<hr class="bar-top">
+
+	<!-- !> 
+	/*************************************************************************/
+	Begin header logo and menu
+	/*************************************************************************/
+	<! -->
+	<header class="clearfix">
+		
+		<!-- header logo -->
+		<a href="." class="logo"><img src="img/logo.png" alt="Espectro - themes evolving"></a>
+		
+		<!-- menu button to mobile version -->
+		<a href="#" class="menu-mobile">Menu Mobile</a>
+		
+		
+		<!-- !> 
+		/*************************************************************************/
+		Begin menu
+		/*************************************************************************/
+		<! -->
+		<nav class="">
+			<div class="wrapper-nav-ul">
+				<ul>
+					
+					<!-- simple option -->
+					<li><a href="."	class="active">Find Skilled People </a></li>
+					
+					<!-- sub-options -->
+					<li><a href="#"> Find Skill Hunters </a>
+						<ul>
+							<li><a href="about.html">H</a></li>
+							<li><a href="services.html">	Services</a></li>
+							<li><a href="comming-soon/coming-soon.html">		Comming Soon</a></li>
+							<li><a href="404.html">	404</a></li>
+						</ul>
+					</li>
+					
+					<!-- sub-options -->
+					<li><a href="#">How It Works</a>
+						<ul>
+							<li><a href="blog.html">			Blog</a></li>
+							<li><a href="blog-detail.html">			Blog Detail</a></li>
+						</ul>
+					</li>
+					
+
+					
+					<!-- simple option -->
+					<li><a href="contact.html">Support</a></li>
+				</ul>
+			</div>
+		</nav>
+		<!-- !> 
+		/*************************************************************************/
+		End menu
+		/*************************************************************************/
+		<! -->
+		
+		<div class="clearfix"></div>
+	</header>
+	<!-- !> 
+	/*************************************************************************/
+	End header logo and menu
+	/*************************************************************************/
+	<! -->	
+ 
+ <div class="search_place_outer">
+        <div class="search_place_inner">
+        
+        <form id="searchForm" method="post">
+		<fieldset>
+        
+           	<input id="s" type="text" />
+            
+            <input type="submit" value="Submit" id="submitButton" />
+            
+            <div id="searchInContainer">
+                <input type="radio" name="check" value="site" id="searchSite" checked />
+                <label for="searchSite" id="siteNameLabel">Find Work</label>
+                
+                <input type="radio" name="check" value="web" id="searchWeb" />
+                <label for="searchWeb">Find Workers</label>
+			</div>
+                        
+            <ul class="icons left">
+           
+                <li class="web" title="Web Search" data-searchType="web">Web</li>
+                <li class="images" title="Image Search" data-searchType="images">Images</li>
+                <li class="news" title="News Search" data-searchType="news">News</li>
+                <li class="videos" title="Video Search" data-searchType="video">Videos</li>
+                
+                <li class="web" title="Web Search" data-searchType="web">Web</li>
+                <li class="images" title="Image Search" data-searchType="images">Images</li>
+                <li class="news" title="News Search" data-searchType="news">News</li>
+                <li class="videos" title="Video Search" data-searchType="video">Videos</li>
+                
+                <li class="web" title="Web Search" data-searchType="web">Web</li>
+                <li class="images" title="Image Search" data-searchType="images">Images</li>
+                <li class="news" title="News Search" data-searchType="news">News</li>
+                <li class="videos" title="Video Search" data-searchType="video">Videos</li>
+ 
+      
+                
+                &nbsp; Latest Jobs
+                
+           </ul>
+                
+           <ul class="icons right">     
+                <li class="web" title="Web Search" data-searchType="web">Web</li>
+                <li class="images" title="Image Search" data-searchType="images">Images</li>
+                <li class="news" title="News Search" data-searchType="news">News</li>
+                <li class="videos" title="Video Search" data-searchType="video">Videos</li>
+                
+                <li class="web" title="Web Search" data-searchType="web">Web</li>
+                <li class="images" title="Image Search" data-searchType="images">Images</li>
+                <li class="news" title="News Search" data-searchType="news">News</li>
+                <li class="videos" title="Video Search" data-searchType="video">Videos</li>
+                
+                <li class="web" title="Web Search" data-searchType="web">Web</li>
+                <li class="images" title="Image Search" data-searchType="images">Images</li>
+                <li class="news" title="News Search" data-searchType="news">News</li>
+                <li class="videos" title="Video Search" data-searchType="video">Videos</li>
+ 
+          
+                
+                &nbsp; Top Workers  
+                 
+            </ul>
+            
+        </fieldset>
+    </form>
+    
+    		<!-- !> 
+		/*************************************************************************/
+		Quote text
+		/*************************************************************************/
+		<! -->
+		<blockquote class="quote">
+			<p>Where You can Present yourself in Real</p>
+			<span class="title-4"> You cannot only hire IT workforce remotely but whole batch of professionals around the world are presented here. </span>
+            
+		</blockquote>
+        
+    </div>
+    </div>
+ 
+    
+
+        
+
+	<!-- !> 
+	/*************************************************************************/
+	Begin main content
+	/*************************************************************************/
+	<! -->
+	<div role="main" class="main" style="margin:50px auto;">
+		
+
+			<h3> Most Recent Skills Posted  </h3>
+			
+				<!-- clients text -->
+				<p class="text-1 left margin-0">
+					Need to work , Can you do it. Apply Now!
+				</p>
+				
+				<!-- more clients link -->
+				<p class="right margin-0 our-clients"><a href="" class="text-5"> Find people skilled in your required category</a></p>
+			
+				<div class="clearfix"></div>
+		<!-- !> 
+		/*************************************************************************/
+		Begin blog post
+		/*************************************************************************/
+		<! -->
+		<section class="grid blog-posts-small clearfix">
+        
+        
+			
+			<ul class="carousel-home-posts clearfix" id="carousel-home-posts" data-items="3">
+				
+				<!-- Begin post element -->
+					<li>
+						<article class="grid-3 view view-first">
+							<figure>
+								<img src="img/dummny/blog/1.jpg" alt="" />
+							</figure>
+							<div class="mask">
+								<div class="inside"></div>
+								<div class="view-back">
+									<div class="comments"><p class="comment-number">20</p><small>Applicants</small></div>
+									<div class="views"><p class="comment-number">3</p><small>Interviewing</small></div>
+								</div>
+							</div>
+							<h4 class="left"><a href="#" >UI design for web application</a></h4>	
+							<p class="blog-posts-text">
+							
+								<!-- post category -->	
+								<span class="text-3">Web Design</span>
+								
+								<!-- post date -->
+								<span class="text-2 block">5 hours ago</span>
+								
+								<!-- post comments -->
+								<span class="text-2 comments comments-hoverfold">10 Comments</span>
+							</p>
+							<!-- post title -->	
+						</article>
+					</li>
+				<!-- End post element -->
+				
+				<!-- Begin post element -->
+					<li>
+						<article class="grid-3 view view-first">
+							<figure >
+								<img src="img/dummny/blog/2.jpg" alt="" />
+							</figure>
+							<div class="mask">
+								<div class="inside"></div>
+								<div class="view-back">
+									<div class="comments"><p class="comment-number">20</p><small>Comments</small></div>
+									<div class="views"><p class="comment-number">565</p><small>Views</small></div>
+								</div>
+							</div>
+							<h4 class="left"><a href="#" >Software Engineering at Facebook</a></h4>	
+							<p class="blog-posts-text">
+							
+								<!-- post category -->	
+								<span class="text-3">In Street Art</span>
+								
+								<!-- post date -->
+								<span class="text-2 block">September 22, 2010</span>
+								
+								<!-- post comments -->
+								<span class="text-2 comments comments-hoverfold">10 Comments</span>
+							</p>
+							<!-- post title -->	
+						</article>
+					</li>
+				<!-- End post element -->
+				
+				<!-- Begin post element -->
+					<li>
+						<article class="grid-3 view view-first">
+							<figure >
+								<img src="img/dummny/blog/3.jpg" alt="" />
+							</figure>
+							<div class="mask">
+								<div class="inside"></div>
+								<div class="view-back">
+									<div class="comments"><p class="comment-number">20</p><small>Comments</small></div>
+									<div class="views"><p class="comment-number">565</p><small>Views</small></div>
+								</div>
+							</div>
+							<h4 class="left"><a href="#" >OS X Mountain Lion</a></h4>	
+							<p class="blog-posts-text">
+							
+								<!-- post category -->	
+								<span class="text-3">In Street Art</span>
+								
+								<!-- post date -->
+								<span class="text-2 block">September 22, 2010</span>
+								
+								<!-- post comments -->
+								<span class="text-2 comments comments-hoverfold">10 Comments</span>
+							</p>
+							<!-- post title -->	
+						</article>
+					</li>
+				<!-- End post element -->
+				
+				<!-- Begin post element -->
+					<li>
+						<article class="grid-3 view view-first">
+							<figure >
+								<img src="img/dummny/blog/4.jpg" alt="" />
+							</figure>
+							<div class="mask">
+								<div class="inside"></div>
+								<div class="view-back">
+									<div class="comments"><p class="comment-number">20</p><small>Comments</small></div>
+									<div class="views"><p class="comment-number">565</p><small>Views</small></div>
+								</div>
+							</div>
+							<h4 class="left"><a href="#" >Breakthrough Retina display</a></h4>	
+							<p class="blog-posts-text">
+							
+								<!-- post category -->	
+								<span class="text-3">In Street Art</span>
+								
+								<!-- post date -->
+								<span class="text-2 block">September 22, 2010</span>
+								
+								<!-- post comments -->
+								<span class="text-2 comments comments-hoverfold">10 Comments</span>
+							</p>
+							<!-- post title -->	
+						</article>
+					</li>
+				<!-- End post element -->
+				
+				<!-- Begin post element -->
+					<li>
+						<article class="grid-3 view view-first">
+							<figure >
+								<img src="img/dummny/blog/5.jpg" alt="" />
+							</figure>s
+							<div class="mask">
+								<div class="inside"></div>
+								<div class="view-back">
+									<div class="comments"><p class="comment-number">20</p><small>Comments</small></div>
+									<div class="views"><p class="comment-number">565</p><small>Views</small></div>
+								</div>
+							</div>
+							<h4 class="left"><a href="#" >iSight camara</a></h4>	
+							<p class="blog-posts-text">
+							
+								<!-- post category -->	
+								<span class="text-3">In Street Art</span>
+								
+								<!-- post date -->
+								<span class="text-2 block">September 22, 2010</span>
+								
+								<!-- post comments -->
+								<span class="text-2 comments comments-hoverfold">10 Comments</span>
+							</p>
+							<!-- post title -->	
+						</article>
+					</li>
+				<!-- End post element -->
+				
+				
+			</ul>
+			
+		</section>
+		<!-- !> 
+		/*************************************************************************/
+		End blog post
+		/*************************************************************************/
+		<! -->
+		
+		<div class="clearfix"></div>
+		
+		
+		<nav class="separator clearfix" data-carousel="carousel-home-posts">
+			<ul>
+			</ul>
+		</nav>
+		
+		
+		<!-- !> 
+		/*************************************************************************/
+		Begin recent work
+		/*************************************************************************/
+		<! -->
+			<div class="inner-content">
+				
+				<h3>Latest portfolio items added by the members</h3>
+			
+				<!-- clients text -->
+				<p class="text-1 left margin-0">
+					Take a look at the stuff People have been working on recently.
+				</p>
+				
+				<!-- more clients link -->
+				<p class="right margin-0 our-clients"><a href="" class="text-5">Find people skilled in your required category</a></p>
+			
+				<div class="clearfix"></div>
+			
+				
+			</div>
+		
+			<section class="grid clearfix portfolio">
+	
+					
+						
+					<!-- !> 
+					/*************************************************************************/
+					Begin work element
+					/*************************************************************************/
+					<! -->
+					<article class="grid-3-2 slider">
+						
+						<div class="TB_Wrapper slider-folio">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/a_01.jpg" alt="Sagres TV" /></div>
+								<div class="Slide"><img src="img/dummny/a_02.jpg" alt="Sagres TV" /></div>
+								<div class="Slide"><img src="img/dummny/a_03.jpg" alt="Sagres TV" /></div>
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Sagres TV</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Website</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					<! -->
+					<article class="grid-3-2 slider ">
+						
+						<div class="TB_Wrapper slider-folio">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/b_01.jpg" alt="Histórias Felizes para Comer" /></div>
+								<div class="Slide"><img src="img/dummny/b_02.jpg" alt="Histórias Felizes para Comer" /></div>
+								<div class="Slide"><img src="img/dummny/b_03.jpg" alt="Histórias Felizes para Comer" /></div>
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Histórias Felizes para Comer</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Mobile Application</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					<! -->
+					<article class="grid-3-2 slider ">
+						
+						<div class="TB_Wrapper slider-folio">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/c_01.jpg" alt="Sagres Preta Chocolate" /></div>
+								<div class="Slide"><img src="img/dummny/c_02.jpg" alt="Sagres Preta Chocolate" /></div>
+								<div class="Slide"><img src="img/dummny/c_03.jpg" alt="Sagres Preta Chocolate" /></div>
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Sagres Preta Chocolate</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Website</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					<! -->
+					<article class="grid-3-2 slider ">
+						
+						<div class="TB_Wrapper slider-folio">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/m_01.jpg" alt="Sagres Selecção" /></div>
+								<div class="Slide"><img src="img/dummny/m_02.jpg" alt="Sagres Selecção" /></div>
+								<div class="Slide"><img src="img/dummny/m_03.jpg" alt="Sagres Selecção" /></div>
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Sporting Clube de Portugal</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Website</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					<! -->
+					<article class="grid-3-2 slider ">
+						
+						<div class="TB_Wrapper slider-folio">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/e_01.jpg" alt="Liga Sagres 2009" /></div>
+								<div class="Slide"><img src="img/dummny/e_02.jpg" alt="Liga Sagres 2009" /></div>
+								<div class="Slide"><img src="img/dummny/e_03.jpg" alt="Liga Sagres 2009" /></div>
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Liga Sagres 2009</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Website</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					<! -->
+					<article class="grid-3-2 slider ">
+						
+						<div class="TB_Wrapper slider-folio no-slide">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/f_01.jpg" alt="Burn Website" /></div>
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Burn Website</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Website</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					<! -->
+					
+					<article class="grid-3-2 slider">
+						
+						<div class="TB_Wrapper slider-folio">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/j_01.jpg" alt="Sagres TV" /></div>
+								<div class="Slide"><img src="img/dummny/j_02.jpg" alt="Sagres TV" /></div>
+								
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Belver Hotels' 2011 Christmas Card</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Website</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					<! -->
+					<article class="grid-3-2 slider ">
+						
+						<div class="TB_Wrapper slider-folio">
+							<div class="Slides">
+								
+								<div class="Slide"><img src="img/dummny/k_01.jpg" alt="Histórias Felizes para Comer" /></div>
+								<div class="Slide"><img src="img/dummny/k_02.jpg" alt="Histórias Felizes para Comer" /></div>
+								<div class="Slide"><img src="img/dummny/k_03.jpg" alt="Histórias Felizes para Comer" /></div>
+									
+							</div><!--End of Slides -->
+						</div><!--End of TB_Wrapper -->
+
+						
+						<div class="desc">
+							
+							<!-- work title-->
+							<h4><a href="#">Belver Living Magazine</a></h4>
+							
+							<!-- type of work -->
+							<p class="text-4">&mdash; Mobile Application</p>
+						</div>
+						
+					</article>
+					<!-- !> 
+					
+					
+					
+					/*************************************************************************/
+					End work element
+					/*************************************************************************/
+					<! -->
+					
+					
+			</section>
+		<!-- !> 
+		/*************************************************************************/
+		End recent work
+		/*************************************************************************/
+		<! -->
+		
+		
+		<div class="clearfix"></div>
+		
+		<hr class="mt-30">
+		
+
+		<section class="inner-content">
+			
+			<!-- clients title -->
+			<h3>Who is using HireRemote</h3>
+			
+			<!-- clients text -->
+			<p class="text-1 left margin-0">
+				HireRemote is used by some of the boldest, most interesting companies on the planet. 
+			</p>
+			
+			<!-- more clients link -->
+			<p class="right margin-0 our-clients"><a href="" class="text-5">View Our Clients</a></p>
+			
+			<div class="clearfix"></div>
+			
+			<!-- Begin clients list -->
+			<ul class="grid-6 clearfix client-list">
+				<li><a href="#"><img src="img/dummny/cliente_01.jpg" alt="hp"></a></li>
+				<li><a href="#"><img src="img/dummny/cliente_02.jpg" alt="Sony"></a></li>
+				<li><a href="#"><img src="img/dummny/cliente_03.jpg" alt="RedBull"></a></li>
+				<li><a href="#"><img src="img/dummny/cliente_04.jpg" alt="Mtv"></a></li>
+				<li><a href="#"><img src="img/dummny/cliente_05.jpg" alt="NVIDIA"></a></li>
+				<li><a href="#"><img src="img/dummny/cliente_06.jpg" alt="Nike"></a></li>
+			</ul>
+			<!-- End clients list -->
+		
+		</section>
+		<!-- !> 
+		/*************************************************************************/
+		End clients
+		/*************************************************************************/
+		<! -->
+		
+		<hr class="margin-60">
+		
+		<!-- !> 
+		/*************************************************************************/
+		Begin services 
+		/*************************************************************************/
+		<! -->
+		<section class="inner-content">
+			
+			<div class="grid-desc-2">
+				
+				<!-- services title -->
+				<h3>Our Three founders trained as architects.</h3>
+
+				<!-- services text -->				
+				<p class="text-1 mb-25">
+					Which instilled us with some important lessons about the digital space: how to think in all four dimensions; that imagination should be tempered by practical engineering; and that no matter how pretty the house is, it only works if people can live in it
+				</p>
+				
+				<!-- services link -->
+				<p><a href="" class="text-5">Read More</a></p>
+			</div>
+			
+			<!-- !> 
+			/*************************************************************************/
+			Begin services list
+			/*************************************************************************/
+			<! -->
+			<ul class="services-list clearfix margin">
+				<li>
+					<a href="#" class="decoration-none">
+						
+						<!-- service icon -->
+						<i class="icon-cog"></i>
+						
+						<!-- service title -->
+						<h4>Strategy</h4>
+						
+						<!-- service text -->
+						<p class="text-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum aliquet dolor, ac suscipit sapien lacinia.</p>
+					</a>
+				</li>
+				
+				<li>
+					<a href="#" class="decoration-none">
+						<i class="icon-cloud"></i>
+						<h4>Connected Experiences</h4>
+						<p class="text-1">Cras convallis, erat ut fermentum tincidunt, purus dolor blandit diam, vitae varius quam nunc non neque.</p>
+					</a>	
+				</li>
+				
+				<li>
+					<a href="#" class="decoration-none">
+						<i class="icon-heart"></i>
+						<h4>Insights & Optimization</h4>
+						<p class="text-1">Proin leo ante, suscipit sit amet consectetur non, malesuada et justo. Sed feugiat diam sit amet ipsum.</p>
+					</a>
+				</li>
+				
+				<li>
+					<a href="#" class="decoration-none">
+						<i class="icon-lock"></i>
+						<h4>Product Development</h4>
+						<p class="text-1">Aenean dictum varius consectetur. Aenean mauris tortor, malesuada vestibulum pharetra quis.</p>
+					</a>
+				</li>
+			</ul>
+			<!-- !> 
+			/*************************************************************************/
+			End services list
+			/*************************************************************************/
+			<! -->
+			
+		</section>
+		<!-- !> 
+		/*************************************************************************/
+		End services 
+		/*************************************************************************/
+		<! -->
+		
+		
+		<div class="clearfix"></div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+	<!-- !> 
+	/*************************************************************************/
+	End main content
+	/*************************************************************************/
+	<! -->
+
+
+<!-- !> 
+/*************************************************************************/
+Begin Footer
+/*************************************************************************/
+<! -->
+<footer>
+	
+	<div class="wrapper">
+		
+		<section class="about">
+			<h4>About</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in vestibulum eros. Praesent at cursus orci. Lorem ipsu ng elit. In in vestibulum erm dolor sit amet, conng elit.</p>
+			<p>In in vestibulum er sectetur adipiscing elit. Nam vitae sagittis dolor.</p>
+			<p><a href="">Read More...</a></p>
+		</section>
+		
+		<section class="twitter-feed"></section>
+		
+		<section class="newsletter">
+			<h4>Newsletter</h4>
+			<p>Subscribe to our newsletter and we'll keep you up-to-date. We don't do spam.</p>
+			
+			<form>
+				
+				<fieldset class="relative">
+					<input type="email" name="" placeholder="Enter your email address...">
+					<button>OK</button>
+				</fieldset>
+				
+			</form>
+			
+			<h4>Contact</h4>
+			
+			<p><u>mail:</u> <a href="mailto:mail@pixelthrone.com">mail@pixelthrone.com</a> &nbsp; <u>skype:</u> pixelthrone &nbsp; <u>phone:</u> <a href="tel:+351964412580">+351 964 412 580</a></p>
+			
+			
+			
+		</section>
+		
+		<div class="clearfix"></div>
+			
+		<hr>
+		
+		<p class="left margin-0">&copy; 2012 PixelThrone. All Rights Reserved. Powered by WordPress.</p>
+		
+		<ul class="social">
+			<li class="youtube"><a href=""><img src="img/icons/social/youtube.png" alt=""></a></li>
+			<li class="linkedin"><a href=""><img src="img/icons/social/linkedin.png" alt=""></a></li>
+			<li class="vimeo"><a href=""><img src="img/icons/social/vimeo.png" alt=""></a></li>
+			<li class="dribble"><a href=""><img src="img/icons/social/dribble.png" alt=""></a></li>
+			<li class="gplus"><a href=""><img src="img/icons/social/gplus.png" alt=""></a></li>
+			<li class="twitter"><a href=""><img src="img/icons/social/twitter.png" alt=""></a></li>
+			<li class="facebook"><a href=""><img src="img/icons/social/facebook.png" alt=""></a></li>
+		</ul>
+		
+		<div class="clearfix"></div>
+		
+	</div>
+	
+</footer>
+
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
+
+<script src="//maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
+
+<!-- !> 
+/*************************************************************************/
+Put your Google Analytics code here. Replace  UA-XXXXX-X with yours.
+/*************************************************************************/
+<! -->
+
+<script>
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33801742-3']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+<script>
+    Modernizr.load([{
+		load : '//apis.google.com/js/plusone.js'
+ 	}, {
+  		load : '//connect.facebook.net/en_US/all.js#xfbml=1'
+ 	},{
+ 	 	load: '//platform.twitter.com/widgets.js'
+ 	},{ 
+ 		load : '//assets.pinterest.com/js/pinit.js' 
+ 	},{load: 'js/audio/audio.min.js', complete: function() {
+			audiojs.events.ready(function() {
+				audiojs.createAll();
+			});
+		}
+	}]);
+
+</script>
+
+<div class="body-overlay"></div>
+
+
+</body>

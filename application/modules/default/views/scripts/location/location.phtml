@@ -1,0 +1,57 @@
+
+
+<!--
+
+<?php foreach($this->data as $data): ?>-->
+	
+	   
+    <!--<?php  echo $data->user_id; ?> 
+	<td><?php echo $data->latitude; ?></td>
+	<td><?php echo $data->longitude; ?></td>
+	<?php endforeach; ?> 
+	
+	
+	 36.44090201 -115.5987506	
+	 
+	  -->
+
+
+<head>
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+<script type="text/javascript">
+    function initialize() {
+    var latlng = new google.maps.LatLng(<?php echo $data['latitude'];?>,<?php echo $data['longitude']?>);
+    var myOptions = {
+      zoom: 15,
+      center: latlng,
+	  mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+	var map = new google.maps.Map(document.getElementById("map_canvas"),myOptions);
+	
+	
+    var image = '../images/red-dot.gif';
+    var LatLng = new google.maps.LatLng(<?php echo $data->latitude;?>,<?php echo $data->longitude;?>);
+    var beachMarker = new google.maps.Marker({
+      position: LatLng,
+      map: map,
+      icon: image
+  });
+  }
+
+
+</script>
+</head>
+
+<div id="map_canvas"></div>
+
+
+<!-- <iframe width="540" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+src="http://maps.google.ch/maps/ms?hl=en&ie=UTF8&msa=0&msid=102376698569738400439.00000111d2005a39e06c2&t=h
+&s=AARTsJoERmiSUDc8 L4YqP7WO7U9ZWdGQFw&ll=<?php echo $data->latitude; ?>,<?php echo $data->longitude; ?>&spn=0.020693,0.036455&z=14&output=embed"></iframe> -->
+	 
+	 
+	 
+	 
+	 

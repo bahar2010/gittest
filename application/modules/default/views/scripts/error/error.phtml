@@ -1,0 +1,93 @@
+<head>
+
+</head>
+
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h1 class="page-title">Error Occured</h1>
+
+  </div>
+ </div>
+ <!-- /top_title -->
+ <div class="wraper">
+  <!-- contact_us -->
+  <div class="contact_us">
+    <?php if (isset($this->exception)): ?>
+ 
+       
+
+			
+   <h1>Error Occured</h1>
+   
+   <br />
+   <br />
+   
+   <?php echo $this->exception->getMessage() ?>
+
+   <br />
+   <br />
+   <br />
+
+  </div>
+  <!-- /contact_us -->
+  <!-- sidebar -->
+  <div class="sidebar">
+  
+  <div class="fb-like-box" data-href="http://www.facebook.com/phonetrackerdotnet" data-width="200" data-height="300"  data-show-faces="true" data-border-color="white" data-stream="false" data-header="false"></div>
+  
+  
+   <!-- most popular -->
+   <div class="most_popular">
+    <h4>Recent Posts from out Blog</h4>
+    <ul>
+    <?php
+               $this->blog();
+               ?>
+                
+     <?php
+        foreach ($this->latestblg as $data) {
+                    ?> 
+                    <li>
+      <a href="<?php
+                echo $this->url(array('module' => 'default',
+                    'controller' => 'blog',
+                    'action' => 'detail',
+                    'post_title' => $data['news_title'],
+                ));  ?>">
+                    <div class="bwWrapper"><img src="http://new.winwinhost.com/wwwroot/uploads/newsimages/<?php echo $data['image']; ?>" width="60" height="55" alt="" /></div>
+      <div class="desc">
+       <p><strong><?php echo $data['news_title']; ?></strong></p>
+       <p> </p>
+       <p><span> <a href="<?php
+                echo $this->url(array('module' => 'default',
+                    'controller' => 'blog',
+                    'action' => 'detail',
+                    'post_title' => $data['news_title'],
+                ));  ?>"><?php echo $data['news_posted']; ?><a> </span></p>
+      </div>
+     </li>
+     <?php } ?> 
+      
+    </ul>
+   </div>
+
+  </div>
+  <!-- /sidebar -->
+ </div>
+</div>
+
+    
+
+<!--
+  <h3>Stack trace:</h3>
+  <pre><?php echo $this->exception->getTraceAsString() ?>
+  </pre>
+
+  <h3>Request Parameters:</h3>
+  <pre><?php echo var_export($this->request->getParams(), true) ?>
+  </pre>
+  <?php endif ?>
+-->
+

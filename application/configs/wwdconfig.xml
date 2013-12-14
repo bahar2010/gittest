@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wwdconfig>
+	<soap_server>https://api.wildwestdomains.com/wswwdapi/wapi.asmx?WSDL</soap_server>
+	<account>473458</account>
+	<password>dom41n4va11</password>
+	<shopper>
+		<sPwd>dom41n4va11</sPwd>
+		<sEmail>agordon@wildwestdomains.com</sEmail>
+		<sFirstName>Artemus</sFirstName>
+		<sLastName>Gordon</sLastName>
+		<sPhone>+1.8885551212</sPhone>
+	</shopper>
+	<registrant>
+		<fname>Artemus</fname>
+		<lname>Gordon</lname>
+		<email>agordon@wildwestdomains.com</email>
+		<sa1>2 N. Main St.</sa1>
+		<city>Valdosta</city>
+		<sp>Georgia</sp>
+		<pc>17123</pc>
+		<cc>United States</cc>
+		<phone>+1.8885551212</phone>
+	</registrant>
+	<nexus>
+		<category>citizen of US</category>
+		<use>personal</use>	
+	</nexus>
+</wwdconfig>	

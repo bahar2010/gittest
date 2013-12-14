@@ -1,0 +1,93 @@
+<head>
+
+</head>
+
+
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h2>Get In Touch<span>We're just an email or phone call away.  Fill out the form below and we'll be right with you!</span></h2>
+
+  </div>
+ </div>
+ <!-- /top_title -->
+ <div class="wraper">
+  <!-- contact_us -->
+  <div class="contact_us">
+   <h4>Where We Are Working </h4>
+<!--   <div class="bwWrapper"><img src="images/contact_us/contact_us.png" width="640" height="265" alt="" /></div>-->
+   <div class="map_wrap"><iframe width="640" height="265" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=12830+Burbank+Blvd+Valley+Vlg,+CA+91607&amp;aq=&amp;sll=34.171824,-118.41260999999997&amp;sspn=49.223579,79.013672&amp;ie=UTF8&amp;hq=&amp;hnear=12830+Burbank+Blvd+Valley+Vlg,+CA+91607&amp;t=m&amp;z=14&amp;ll=34.171824,-118.41260999999997&amp;output=embed"></iframe></div>
+   <ul>          
+    <li>Address:<br /><br />Phone:<br />Email:Fax:<br />Fax:</li>
+    <li><strong>12830 Burbank Blvd<br />Valley Vlg, CA 91607<br />(800) 880-4295<br />support@winwinhost.com<br />-------------- </strong></li>
+    <li>WinWinHost is located at the heart of California.  Come on down and have a visit!  Or feel free to fill out the form below to get in touch with us. We'd love to hear from you, and will be in touch with you right away.  Thanks, we look forward to hearing from you! </li>
+   </ul> 
+   <h4>Drop Us A Quick Line!</h4>
+   
+  
+
+   	<?php echo $this->ContactForm; ?>
+
+	<?php if(isset($this->message)): ?>
+	<?php echo $this->message; ?>
+  	<?php endif;?>
+  
+  	<br />
+    <br>
+  </div>
+  <!-- /contact_us -->
+  <!-- sidebar -->
+  <div class="sidebar">
+  
+  <div class="fb-like-box" data-href="http://www.facebook.com/phonetrackerdotnet" data-width="200" data-height="300"  data-show-faces="true" data-border-color="white" data-stream="false" data-header="false"></div>
+  
+  
+   <!-- most popular -->
+   <div class="most_popular">
+    <h4>Recent Posts from out Blog</h4>
+    <ul>
+    <?php
+               $this->blog();
+               ?>
+                
+     <?php
+        foreach ($this->latestblg as $data) {
+                    ?> 
+                    <li>
+      <a href="<?php
+                echo $this->url(array('module' => 'default',
+                    'controller' => 'blog',
+                    'action' => 'detail',
+                    'post_title' => $data['news_title'],
+                ));  ?>">
+                    <div class="bwWrapper"><img src="http://new.winwinhost.com/wwwroot/uploads/newsimages/<?php echo $data['image']; ?>" width="60" height="55" alt="" /></div>
+      <div class="desc">
+       <p><strong><?php echo $data['news_title']; ?></strong></p>
+       <p> </p>
+       <p><span><a href="<?php
+                echo $this->url(array('module' => 'default',
+                    'controller' => 'blog',
+                    'action' => 'detail',
+                    'post_title' => $data['news_title'],
+                ));  ?>"><?php echo $data['news_posted']; ?><a> </span></p>
+      </div>
+     </li>
+     <?php } ?> 
+     
+    
+    </ul>
+   </div>
+
+
+  </div>
+  <!-- /sidebar -->
+ </div>
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+<?php
+$this->title = "Delete Domain";
+$this->headTitle($this->title);
+
+?>
+<p>
+
+  Are you sure that you want to delete domain
+ '<?php echo $this->escape($this->domain['homepage_domain_extension']); ?>'  
+ '<?php echo $this->escape($this->domain['homepage_domain_price_dollars']); ?>'
+ '<?php echo $this->escape($this->domain['homepage_domain_price_cents']); ?>' ?
+  
+</p>
+<form action="<?php echo $this->url(array('action'=>'deletedomain')); ?>" method="post">
+<div>
+<input type="hidden" name="id" value="<?php echo $this->domain['domain_id']; ?>" />
+<input type="submit" name="del" value="Yes" />
+<input type="submit" name="del" value="No" />
+</div>
+
+</form>
+

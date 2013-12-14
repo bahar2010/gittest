@@ -1,0 +1,47 @@
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h2> WinWinHost's Blog <span> Stay Up to date with our news and world of web </span></h2>
+   <ul>
+    <!-- <li><a href="#">Home</a></li>
+    <li><a href="#"></a></li> 
+    <li></li>--> 
+   </ul>
+  </div>
+ </div>
+ <!-- /top_title -->
+ 
+ <div class="wraper">
+  <!-- blog entries full -->
+  <div class="blog_entries blog_entries_full">
+  
+   <?php foreach($this->data as $data): ?>
+   <div class="post post_medium">
+    <div class="img_wrap bwWrapper">
+     <div class="date"><?php echo $data['news_posted']; ?></div>
+      <a href="#"><img src="http://new.winwinhost.com/wwwroot/uploads/newsimages/<?php echo $data['image']; ?>" width="493" height="249" alt="" /></a>
+    </div>
+    <div class="desc">
+     <h4><a href="<?php echo $this->url(array('module' => 'default','controller' => 'blog','action' => 'detail','post_title' => $data['news_title']));?>"><?php echo $data['news_title']; ?></a></h4>
+     <p>
+         <?php //echo $data['news_text']; ?>
+         <?php echo  $this->truncate($data['news_text']); ?>
+     </p>
+     <div class="metadata">
+      <strong class="dots">....</strong>
+      By <a href="#" style="text-transform: capitalize"><?php echo $data['member_username']; ?> <!-- |  <a href="#">12 COMMENTS</a> --> <br /><a href="<?php echo $this->url(array('module' => 'default','controller' => 'blog','action' => 'catagorysearch','cat_name' => $data['name']));?>" style="text-transform: capitalize"><?php echo $data['name']; ?></a> 
+      <a href="<?php echo $this->url(array('module' => 'default','controller' => 'blog','action' => 'detail','post_title' => $data['news_title']));?>" class="read_more btn_col">Read More</a>
+     </div>   
+    </div>   
+   </div>
+   <?php endforeach; ?>
+
+	<?php echo $this->paginationControl($this->data, 'Sliding', 'pagination/pagination.phtml'); ?>
+	<!-- pager_nav -->
+
+   <!-- /pager_nav -->
+  </div>
+  <!-- /blog entries full -->
+  
+ </div>

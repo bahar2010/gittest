@@ -1,0 +1,117 @@
+
+ <section id="content" class="container clearfix">
+
+	<header class="page-header">
+		
+			<h1 class="page-title">Manage Your child IDs here
+            
+             </h1>
+			
+		</header><!-- end .page-header -->
+	
+	<section id="main">
+    <article class="entry single clearfix">
+    
+<h3 class="title"><a href="#"></a></h3>
+				<h6><a href="#">Please add a new child ID here</a></h6>
+                
+                
+
+<form name="edithotword" action="<?php echo $this->baseurl; ?>/dashboard/hotword/edit/" method="post" >
+<table id="customers">
+<tbody><tr>
+<th>ID</th>
+<th>Edit Child Name In The field below</th>
+</tr> 
+<tr>
+    <td><?php  echo $this->data['id']; ?> </td>
+	<td><input type="text" name="hotword" width="100%" value="<?php echo $this->data['word']; ?>" />
+		Priority: 
+ <select name="priority">
+	<option value=1>
+		1
+	</option>
+ </select>
+		<input type="hidden" name="hotwordid" value="<?php echo $this->data['id']; ?>">
+	</td>
+
+</tr>
+</tbody>	
+</table>   
+<input style="margin-left:20px;" type="submit" value="Update"/>
+</form>
+ 
+			</div>
+
+
+			<!-- end .entry-body -->
+
+			<!-- end .entry-meta -->
+            
+		</article>
+        
+       <!-- <p class="info"><strong>Services : You can View the following logs for <strong><?php echo $this->childName; ?> </strong></p> -->
+        
+ 
+
+	</section><!-- end #main -->
+
+	<aside id="sidebar">
+    
+    <div class="widget">
+                   
+                            <div class="infobox">
+                    
+                                <h3>Want to Add a Child?</h3>
+                    
+                                <p><a class="button" href="<?php echo $this->baseurl; ?>/dashboard/hotword/add">Click Here </a></p>
+                    
+                            </div><!-- end .infobox -->
+                    </div>
+                    
+                    <div class="widget">
+                    
+		<h6 class="widget-title">Twitter Feed</h6>
+						<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+                        <script>
+                        new TWTR.Widget({
+                          version: 2,
+                          type: 'profile',
+                          rpp: 3,
+                          interval: 30000,
+                          width:'auto',
+                          height: 220,
+                          theme: {
+                            shell: {
+                              background: '#6e6e6e',
+                              color: '#ffffff'
+                            },
+                            tweets: {
+                              background: '#575457',
+                              color: '#ffffff',
+                              links: '#a3a3a3'
+                            }
+                          },
+                          features: {
+                            scrollbar: false,
+                            loop: false,
+                            live: false,
+                            behavior: 'all'
+                          }
+                        }).render().setUser('winwinhost').start();
+                        </script>
+
+		</div>
+
+
+	</aside><!-- end #sidebar -->
+	
+</section>
+
+
+
+
+
+ 
+ 
+ 

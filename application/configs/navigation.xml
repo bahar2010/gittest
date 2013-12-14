@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+    <nav>
+        
+        
+
+
+        <dashboard>
+            <label>Dashboard</label>
+            <module>dashboard</module>
+            <controller>index</controller>
+            <action>index</action>
+            <resource>dashboard:index</resource>
+            <privilege>index</privilege>
+        </dashboard>
+		
+		
+		
+		<tracker>
+            <label>Movement Tracker</label>
+            <module>dashboard</module>
+            <controller>tracker</controller>
+            <action>index</action>
+            <resource>dashboard:tracker</resource>
+            <privilege>tracker</privilege>
+        </tracker>
+		
+		
+		
+		<advance>
+            <label>Security Map</label>
+            <module>dashboard</module>
+            <controller>advance</controller>
+            <action>index</action>
+            <resource>dashboard:advance</resource>
+            <privilege>advance</privilege>
+        </advance>
+		
+		
+
+
+        <profile>
+            <label>Profile</label>
+            <module>default</module>
+            <controller>user</controller>
+            <action>profile</action>
+            <resource>user</resource>
+            <privilege>profile</privilege>
+        </profile>
+
+
+        
+		
+		
+
+
+    </nav>
+</configdata>

@@ -1,0 +1,676 @@
+
+<!-- <?php $role = Zend_Auth::getInstance()->getIdentity()->member_role; ?> -->
+
+<?php foreach($this->data as $data): ?>
+	
+	   
+	<!--  
+    <?php  echo $data->members_location_id; ?>  
+	<td><?php echo $data->members_location_lati; ?></td>
+	<td><?php echo $data->members_location_longi; ?></td>
+    <td><?php echo 'hello'.$data->members_location_member_id; ?></td>
+    -->
+	<?php endforeach; ?><head>
+	
+        <?php foreach($this->datachild as $datachild): ?> 	
+
+<?php endforeach; ?>
+    
+    
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>  
+ <script>
+//Initialize Global Variables
+var adUnit;
+var marker;
+var infoWindow;
+var geocoder;
+var map = null;
+var lat;
+var lon;
+
+function initialize() {
+    
+    var mapOptions = {
+        zoom: 12,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: false,
+        panControl: false,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.BOTTOM_CENTER
+        },
+        zoomControl: true,
+        zoomControlOptions: {
+            style: google.maps.ZoomControlStyle.SMALL,
+            position: google.maps.ControlPosition.LEFT_CENTER
+        }
+    };
+    
+    map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+   
+    lat = <?php echo $data->members_location_lati; ?>;
+    lon = <?php echo $data->members_location_longi; ?>;
+    
+    // Determine your initial location through GPS
+  //  if (navigator.geolocation) {
+     //   navigator.geolocation.getCurrentPosition(function(position) {
+     //       lat = position.coords.latitude;
+     //       lon = position.coords.longitude;
+     //   });
+    //}
+    
+    var latLng = new google.maps.LatLng(lat, lon);
+    map.setCenter(latLng);
+    marker = new google.maps.Marker({
+        position: latLng,
+        title: 'Drag this pin to another location',
+        animation: google.maps.Animation.DROP,
+        map: map,
+        draggable: true
+    });
+    
+    infoWindow = new google.maps.InfoWindow({
+        content: "<div class='place'> <?php echo $this->childName; ?>  at  </br> <?php echo $data->member_location_timestamp; ?></div>"
+    });
+    
+    infoWindow.open(map, marker);
+    
+    geocoder = new google.maps.Geocoder();
+    
+    //Update postal address when the marker is dragged
+    google.maps.event.addListener(marker, 'dragend', function() {
+        geocoder.geocode({latLng: marker.getPosition()}, function(responses) {
+            if (responses && responses.length > 0) {
+                infoWindow.setContent(
+                "<div class='place'>" + responses[0].formatted_address 
+                + "<small>" 
+                + "Latitude: " + marker.getPosition().lat() + "" 
+                + "Longitude: " + marker.getPosition().lng() + "</small></div>"
+                );
+                infoWindow.open(map, marker);
+            } else {
+                alert('Error: Google Maps could not determine the address of this location.');
+            }
+        });
+        map.panTo(marker.getPosition());
+    });
+    
+    // Close the marker window when being dragged
+    google.maps.event.addListener(marker, 'dragstart', function() {
+        infoWindow.close(map, marker);
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+// Search for an address on Google Maps
+function showAddress(address) {
+    if (geocoder) {
+        geocoder.geocode({'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                
+                // For accurate addresses, the type is ROOFTOP else APPROXIMATE
+                if (results[0].geometry.location_type == "ROOFTOP")
+                    map.setZoom(18);
+                else
+                    map.setZoom(14);
+                map.setCenter(results[0].geometry.location);
+                marker.setPosition(results[0].geometry.location);
+                infoWindow.open(map, marker);
+            } else {
+                alert("Error: " + address + " cannot be found on Google Maps.");
+            }
+        });
+    }
+}
+</script>
+
+	</head>
+
+<section id="content" class="container clearfix">
+
+	<header class="page-header">
+		
+			<h1 class="page-title">Location of 
+			
+			<?php echo $this->childName; ?> 
+            
+             </h1>
+			
+		</header><!-- end .page-header -->
+	
+	
+    
+<h3 class="title"><a href="#">Your Latest Recorded Location</a></h3>
+				<h5><a href="#">Drag the pin above in map anywhere on the map to know the approximate address of that point.</a></h5>
+                
+			<div id="map_canvas"></div>
+
+			</div>
+
+
+			<!-- end .entry-body -->
+
+			<!-- end .entry-meta -->
+            
+		</article>
+        <section id="main">
+    <article class="entry single clearfix">
+       <p class="info"><strong>Services :</strong> You can also view the following logs for <strong><?php echo $this->childName; ?> </strong></p>
+        
+        
+        <?php if ($role == 2 ): ?>
+    
+    
+    <section id="portfolio-items" class="clearfix">
+
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-location.png" alt="">
+        
+                    <a class="project-meta" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'location','action' => 'index', 'id'=>$datachild->id, 'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Latest Location</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+	
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-tracks.png" alt="">
+        
+                    
+                    <a class="project-meta" title="Recent Movement Track" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'tracker','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Movement Tracks</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-dangers.png" alt="">
+        
+                    <a class="project-meta" title="view Safety Maps" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'advance','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Safty Maps</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 <!-- end .one-fourth (Altered) -->
+       <!-- <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-dangers.png" alt="">
+        
+                    <a href="#" class="project-meta">
+                        <h5 class="title">Safty Map</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+                <!-- <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-surfing.png" alt="">
+        
+                    <a href="#" class="project-meta">
+                        <h5 class="title">Web Browsing History</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+                 
+                 
+                 
+                 
+                 <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-surfing.png" alt="">
+        
+        
+                    <a class="project-meta" title="Web Browsing History of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'browsinghistory','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Web Browsing History</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+                 
+                 
+                 
+                 
+       <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-contacts.png" alt="">
+        
+                    <a class="project-meta" title="View Phone Contacts of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'phonecontacts','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>"> 
+                        <h5 class="title">Phone Contacts</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-contacts.png" alt="">
+        
+                    <a class="project-meta" title="View Email Contacts of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'emailcontacts','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+
+                        <h5 class="title">Email Contacts</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+     <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-calllog.png" alt="">
+        
+                    <a class="project-meta" title="View Call Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'calllog','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>"> 
+                        <h5 class="title">In-Coming/Outgoing Call Log</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+        <!-- end .one-fourth (Altered) -->
+        
+        
+         <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-texts.png" alt="">
+        
+                    <a class="project-meta" title="View SMS Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'smslog','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">In-Coming/Outing SMS Log</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+                 
+                 <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-video.png" alt="">
+        
+                    <a class="project-meta" title="View Video files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'videolist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Video Track List</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+              
+                 
+              <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-audio.png" alt="">
+        
+                    <a class="project-meta" title="Listen Audio files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'audiolist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Audio Files</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+        
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-multimedia.png" alt="">
+        
+                   <a class="project-meta" title="View Image files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'imagelist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Image Files List</h5>
+                    </a>
+                    
+                 </article>
+                 
+
+		
+
+	</section>
+    
+    <?php elseif ($role == 3 ): ?>
+    
+    <section id="portfolio-items" class="clearfix">
+
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-location.png" alt="">
+        
+                    <a class="project-meta" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'location','action' => 'index', 'id'=>$datachild->id, 'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Latest Location</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+	
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-tracks.png" alt="">
+        
+                    
+                    <a class="project-meta" title="Recent Movement Track" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'tracker','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Movement Tracks</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+                 
+                 <!-- end .one-fourth (Altered) -->
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-dangers.png" alt="">
+        
+                    <a class="project-meta" title="view Safety Maps" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'advance','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Safty Maps</h5>
+                    </a>
+                    
+                 </article>
+
+                 
+                 
+                 <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-surfing.png" alt="">
+        
+        
+                    <a class="project-meta" title="Web Browsing History of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'browsinghistory','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Web Browsing History</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+                 
+                 
+                 
+                 
+       <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-contacts.png" alt="">
+        
+                    <a class="project-meta" title="View Phone Contacts of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'phonecontacts','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>"> 
+                        <h5 class="title">Phone Contacts</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-contacts.png" alt="">
+        
+                    <a class="project-meta" title="View Email Contacts of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'emailcontacts','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Email Contacts</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+     <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-calllog.png" alt="">
+        
+                    <a class="project-meta" title="View Call Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'calllog','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>"> 
+                        <h5 class="title">In-Coming/Outgoing Call Log</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+        <!-- end .one-fourth (Altered) -->
+        
+        
+         <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-texts.png" alt="">
+        
+                    <a class="project-meta" title="View SMS Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'smslog','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">In-Coming/Outing SMS Log</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+                 
+                 
+                 
+                  <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-hotwords.png" alt="">
+        
+                    <a class="project-meta" title="View SMS Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'showhword','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">SMS including Hot Words</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+
+                 
+        <!-- end .one-fourth (Altered) -->
+      <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-video.png" alt="">
+        
+                    <a class="project-meta" title="View Video files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'videolist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Video Track List</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+              
+                 
+              <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-audio.png" alt="">
+        
+                    <a class="project-meta" title="Listen Audio files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'audiolist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Audio Files</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+        
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-multimedia.png" alt="">
+        
+                   <a class="project-meta" title="View Image files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'imagelist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Image Files List</h5>
+                    </a>
+                    
+                 </article>
+                 
+
+		
+
+	</section>
+    
+    
+    
+    
+    <?php elseif ($role == 5 ): ?>
+    
+    <section id="portfolio-items" class="clearfix">
+
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-location.png" alt="">
+        
+                    <a class="project-meta" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'location','action' => 'index', 'id'=>$datachild->id, 'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Latest Location</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+	
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-tracks.png" alt="">
+        
+                    
+                    <a class="project-meta" title="Recent Movement Track" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'tracker','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Movement Tracks</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+                 
+                 <!-- end .one-fourth (Altered) -->
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-dangers.png" alt="">
+        
+                    <a class="project-meta" title="view Safety Maps" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'advance','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Safty Maps</h5>
+                    </a>
+                    
+                 </article>
+
+                 
+                 
+                 <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-surfing.png" alt="">
+        
+        
+                    <a class="project-meta" title="Web Browsing History of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'browsinghistory','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Web Browsing History</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+                 
+                 
+                 
+                 
+       <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-contacts.png" alt="">
+        
+                    <a class="project-meta" title="View Phone Contacts of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'phonecontacts','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>"> 
+                        <h5 class="title">Phone Contacts</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-contacts.png" alt="">
+        
+                    <a class="project-meta" title="View Email Contacts of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'emailcontacts','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Email Contacts</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+     <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-calllog.png" alt="">
+        
+                    <a class="project-meta" title="View Call Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'calllog','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>"> 
+                        <h5 class="title">In-Coming/Outgoing Call Log</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+        <!-- end .one-fourth (Altered) -->
+        
+        
+         <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-texts.png" alt="">
+        
+                    <a class="project-meta" title="View SMS Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'smslog','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">In-Coming/Outing SMS Log</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+                 
+                 
+                 
+                  <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-hotwords.png" alt="">
+        
+                    <a class="project-meta" title="View SMS Log of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'showhword','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">SMS including Hot Words</h5>
+                    </a>
+                    
+                 </article><!-- end .one-fourth (Altered) -->
+
+                 
+        <!-- end .one-fourth (Altered) -->
+      <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-video.png" alt="">
+        
+                    <a class="project-meta" title="View Video files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'videolist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Video Track List</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+              
+                 
+              <article class="one-fifth" data-categories="illustration design">
+        
+
+                        <img src="/images/icon-post-format-audio.png" alt="">
+        
+                    <a class="project-meta" title="Listen Audio files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'audiolist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Audio Files</h5>
+                    </a>
+                    
+                 </article>
+                 
+                 
+        
+        <article class="one-fifth" data-categories="illustration design">
+        
+                        <img src="/images/icon-post-format-multimedia.png" alt="">
+        
+                   <a class="project-meta" title="View Image files of <?php echo $datachild->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'imagelist','action' => 'index', 'id'=>$datachild->id,'name'=> $datachild->child_name));?>">
+                        <h5 class="title">Image Files List</h5>
+                    </a>
+                    
+                 </article>
+                 
+
+		
+
+	</section>
+    
+      <?php endif; ?> 
+        
+        
+
+	</section><!-- end #main -->
+
+	<aside id="sidebar">
+    
+    
+    
+    
+  
+            
+
+            
+            <div class="widget">
+    <p class="info"><strong>other Family Members </strong></p>        
+
+
+
+	<?php foreach($this->datachild2 as $datachild2): ?> 		
+ 
+ 
+        <ul class="circle">
+				
+				<li><h4 class="name"><a title="view phone data of <?php echo $datachild2->child_name; ?>" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'child','action' => 'index', 'id'=>$datachild2->id, 'name'=> $datachild2->child_name));?>"><?php echo $datachild2->child_name; ?></a></h4></li>
+                
+				
+			</ul>
+ 
+			<?php endforeach; ?>
+			
+			</div>
+
+		<!-- end .widget -->
+
+
+
+	</aside><!-- end #sidebar -->
+	
+</section>
+
+
+

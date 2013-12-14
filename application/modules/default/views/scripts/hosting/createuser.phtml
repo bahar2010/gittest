@@ -1,0 +1,68 @@
+<head>
+
+
+
+<link rel='stylesheet' id='contact-form-7-css'  href='../css/style.css' type='text/css' media='all' />
+
+
+
+
+
+</head>
+
+<div class="container clearfix fitvids">
+    
+
+<div id="page-heading">
+    <h1>Web Hosting </h1>	
+    	
+</div>
+<!-- /page-heading -->
+
+<div class="post full-width clearfix">
+	<div class="entry clearfix">
+		<p><strong>hello Enjoy access to our WinWinHost Hosting Offers!</strong></p>
+<div class="clear"></div>
+<hr class="" style="margin-top: px; margin-bottom:px;" />
+<ul class="pricing-table clearfix">
+<?php if (!isset($this->result)): ?>
+<form action=? method="POST">
+<input type=hidden name=action value="add">
+Username: <input type=text name=username><br>
+Domain:<input type=text name=domain><br>
+Email: <input type=text name=email><br>
+Pass: <input type=password name=pass><br>
+Packge: <select name=package>
+<?php
+$packages = $this->directadmin('package');
+foreach($packages['list'] as $package)
+{
+	echo "<option value=\"". $package . "\">" . $package . "</option>";
+} 
+?>
+</select><br>
+<input type="submit" name="submit">
+</form>
+<?php else: ?>
+<?php print_r ($this->result);?>
+<?php endif; ?>
+
+
+</ul>
+<div class="clear"></div>
+<div class="clear"></div>
+<hr class="" style="margin-top: px; margin-bottom:px;" /a>
+
+<div class="clear"></div>
+<div class="clear"></div>
+
+	</div>
+	<!-- /entry -->
+    
+	    
+</div>
+<!-- /post -->
+
+
+<div class="clear"></div>
+</div><!-- /container -->

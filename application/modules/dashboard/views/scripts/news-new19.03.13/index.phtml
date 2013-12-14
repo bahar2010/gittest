@@ -1,0 +1,151 @@
+<!-- <?php $role = Zend_Auth::getInstance()->getIdentity()->member_role; ?> --><head>
+   
+    <script type="text/javascript">
+        //adding load class to body and hide page
+        document.documentElement.className += 'loadstate';
+    </script>
+</head>
+
+<?php  if ($role == 1 ): ?>
+
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h2>Manage your Posts Here<span>Add, Edit , Delete</span></h2>
+   <ul>
+    <!-- <li><a href="#">Home</a></li>
+    <li><a href="#"></a></li> 
+    <li></li>--> 
+   </ul>
+  </div>
+ </div>
+ <!-- /top_title -->
+              
+</div>
+
+<div class="wraper">                
+                  
+                    <div class="row-fluid">
+
+                        <div class="span12">
+
+                            <div class="box ">
+
+                                <div class="title">
+
+                                    <h4 class="left">
+                                        <span class="icon16 brocco-icon-grid"></span>
+                                        <span>Blog Posts</span>
+                                    </h4>
+                                    
+                                    <form class="box-form right" action="" />
+                                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="<?php echo $this->url(array('module' => 'dashboard','controller' => 'news','action' => 'add'));?>" style="padding:10px; margin-top:5px;">
+                                        <span class="" >Write New Post</span></a>
+                                    </form>
+                                    <!--<a href="#" class="minimize">Minimize</a> -->
+                                    <div class="clearfix"></div>
+                                </div>
+                                
+                                
+                                <div class="content noPad clearfix">
+                                    <table cellpadding="0" cellspacing="0" border="0" class="responsive dynamicTable display table table-bordered" width="100%">
+                                        <thead>
+                                            <tr>
+                                            <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Posted</th> 
+                                            <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach($this->data as $news): ?>
+                                            <tr class="">
+                                            <td><?php echo $news->news_id; ?></td>
+                                            <td><?php echo $news->news_title; ?></td>
+                                            <td><?php echo $news->news_posted; ?></td> 
+                                                <td class="center">
+                                                <div class="controls center">
+                                                    <a title="Edit Post" class="tip" href="<?php
+                                            echo $this->url(array(
+                                                'module' => 'dashboard',
+                                                'controller' => 'news',
+                                                'action' => 'edit',
+                                                'id' => $news->news_id));
+                                            ?>"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                             <a title="Remove Post" class="tip" href="<?php
+                                            echo $this->url(array(
+                                                'module' => 'dashboard',
+                                                'controller' => 'news',
+                                                'action' => 'delete',
+                                                'id' => $news->news_id));
+                                                ?>/"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                </div>
+                                                </td>
+                                            </tr>
+                                         <?php endforeach; ?>  
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                               <th>ID</th>
+                                            <th>Title</th>
+                                            <th>Posted</th> 
+                                            <th>Actions</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                            </div><!-- End .box -->
+
+                        </div><!-- End .span12 -->
+
+                    </div>
+ 
+</div>                    
+    
+<?php elseif ($role == 2): ?>
+        
+    <div class="container clearfix fitvids">
+        <div id="page-heading">
+            <h1>Member</h1>	   	
+        </div>
+        <!-- /page-heading -->
+        <div class="post full-width clearfix">
+            Hello
+        </div>
+        <!-- /post -->
+        <div class="clear"></div>
+    </div><!-- /container -->
+        
+<?php elseif ($role == 3): ?>  
+        
+    <div class="container clearfix fitvids">
+        <div id="page-heading">
+            <h1>Hosting</h1>	   	
+        </div>
+        <!-- /page-heading -->
+        <div class="post full-width clearfix">
+            Hello
+        </div>
+        <!-- /post -->
+        <div class="clear"></div>
+    </div><!-- /container -->
+        
+        
+<?php elseif ($role == 4): ?> 
+        
+    <div class="container clearfix fitvids">
+        <div id="page-heading">
+            <h1>Domain</h1>	   	
+        </div>
+        <!-- /page-heading -->
+        <div class="post full-width clearfix">
+            Hello
+        </div>
+        <!-- /post -->
+        <div class="clear"></div>
+    </div><!-- /container -->	
+        
+        
+<?php endif; ?>

@@ -1,0 +1,171 @@
+<head>
+
+<link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/style.css">
+<link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/responsive.css">
+<link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/prettyPhoto.css">
+<link rel="stylesheet" href="http://new.winwinhost.com/wwwroot/css/flexslider.css">
+
+<script src="http://new.winwinhost.com/wwwroot/scripts/jquery.min.js"></script>
+<script src="http://new.winwinhost.com/wwwroot/scripts/jquery.prettyPhoto.js"></script>
+<script src="http://new.winwinhost.com/wwwroot/scripts/jquery.blackandwhite.min.js"></script>
+<script src="http://new.winwinhost.com/wwwroot/scripts/js_func.js"></script>
+<script src="http://new.winwinhost.com/wwwroot/scripts/jquery.flexslider-min.js"></script>
+
+
+<script>
+$(function(){
+	$(".gallery a[rel^='prettyPhoto']").prettyPhoto({theme: 'dark_rounded'});
+    $('.bwWrapper').BlackAndWhite({
+        hoverEffect : true,
+        webworkerPath : false,
+        responsive:true,
+        invertHoverEffect:false
+    });
+})
+</script>
+
+
+
+<script>
+$(function(){
+	$('.flexslider').flexslider();
+	$('.features_slider').bxSlider({
+		auto: false,
+		displaySlideQty: 4,
+		moveSlideQty: 1,
+    	speed : 1000
+	});
+	$(".gallery a[rel^='prettyPhoto']").prettyPhoto({theme: 'dark_rounded'});
+    $('.bwWrapper').BlackAndWhite({
+        hoverEffect : true,
+        webworkerPath : false,
+        responsive:true,
+        invertHoverEffect:false
+    });
+})
+</script>
+
+</head>
+
+
+
+
+
+
+
+
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h2><?php echo $this->project_info->name; ?><span><?php echo substr($this->project_info->description, 0, 50) ;?></span></h2>
+   
+   <!--<ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Portfolio Single Post</a></li>
+    <li>Full Width</li>
+   </ul>-->
+   
+  </div>
+ </div>
+ <!-- /top_title -->
+ <div class="wraper">
+
+ <!-- flex slider -->
+<div class="flexslider">
+  <ul class="slides">
+   
+    
+    <li>
+   
+			<?php $i = 0; ?>
+		 <?php foreach ($this->project_images as $item): ?>
+         <?php $display = $i == 0 ? '' : 'none'; ?>
+      <img  id="project_imageid_<?php echo $i; ?>" src="/wwwroot/images/portfolio/<?php echo $item->store_name; ?>" alt="<?php echo $item->file_name; ?>" style ="width: 950px; height: 342px; display: <?php echo $display; ?>"  />
+      
+      <?php $i++ ; ?>		
+		<?php endforeach; ?>
+        
+    </li>
+    
+
+  </ul>
+</div>
+<!-- /flex slider -->
+
+
+
+  <!-- Portfolio Single Post Full Width -->
+  <div class="single_full">
+   <script type="text/javascript" language="javascript">
+		var imgid = 0;
+
+		 js_show_next = function() {
+			 if ($('#project_imageid_' + imgid).length > 0) {
+				 $('#project_imageid_' + imgid).hide();
+				 imgid++;
+				 if ($('#project_imageid_' + imgid).length > 0) {
+					 $('#project_imageid_' + imgid).show();
+				 } else {
+					imgid = 0;
+					$('#project_imageid_' + imgid).show();
+				 }
+			 }
+			 return false;
+		 }
+
+		 js_show_prev = function() {
+			  if ($('#project_imageid_' + imgid).length > 0) {
+				 $('#project_imageid_' + imgid).hide();
+				 imgid --;
+				 if (imgid > 0 && $('#project_imageid_' + imgid).length > 0) {
+					 $('#project_imageid_' + imgid).show();
+				 } else {
+					imgid = 0;
+					$('#project_imageid_' + imgid).show();
+				 }
+			 }
+			 return false;
+		 }
+		 
+	</script>
+  
+   <ul>
+    <li>
+     	 
+     
+      <a href="" class="bx-prev" onclick="return js_show_prev()">prev</a><a href="" class="bx-next" onclick="return js_show_next()">next</a>
+	
+     <div class="desc">
+      <div class="things_list">
+       <h4>Things We Did</h4>
+       <i>on this project</i>
+       <ul>
+        <li><?php echo $this->project_info->technology1; ?></li>
+        <li><?php echo $this->project_info->technology2; ?></li>
+        <li><?php echo $this->project_info->technology3; ?></li>
+        <li><?php echo $this->project_info->technology4; ?></li>
+		 <li><?php echo $this->project_info->technology5; ?></li>
+       </ul>
+       <p><?php if (!empty($this->project_info->link)): ?>
+		   <a class="btn_m" href="<?php echo $this->project_info->link; ?>">View Project</a></p>
+	   <?php endif; ?>
+      </div>
+      <h4><?php echo $this->project_info->name; ?></h4>
+      <i><?php echo $this->project_info->category;?></i>
+      <p><?php echo $this->project_info->description; ?></p>
+     </div>
+    </li>
+   </ul>
+  </div>
+  <!-- /Portfolio Single Post Full Width -->
+ </div>
+
+ 
+ 
+ 
+ 
+</div>
+
+<br style="clear: both" />

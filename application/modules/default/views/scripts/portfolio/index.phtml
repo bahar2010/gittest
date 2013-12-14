@@ -1,0 +1,62 @@
+<head>
+<style>
+	.cl-images-thumbs {
+		margin: 10px;
+		float: left;
+		border: 2px graytext outset;
+	}
+</style>
+</head>
+
+
+<div class="content_block">
+ <!-- top_title -->
+ <div class="top_title">
+  <div class="wraper">
+   <h2>Our Work <span>This is our favorite part of the site, our showcase!</span></h2>
+   <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Long Text Layout</a></li>
+    <li>One Column</li>
+   </ul>
+  </div>
+ </div>
+ <!-- /top_title -->
+ <div class="wraper">
+ <?php foreach ($this->data as $item): ?>
+
+  <div class="long_text_layout gallery">
+   <ul>
+    <li>
+     <div class="img bwWrapper"><a href="/wwwroot/images/portfolio/<?php echo $item['store_name']; ?>" title="<?php echo $item['file_name']; ?>" rel="prettyPhoto[gallery2]">
+			 <img src="/wwwroot/images/portfolio/thumbs/<? echo $item['store_name']; ?>" title="<?php echo $item['file_name']; ?>" width="641" height="266" alt="" />
+		 </a>
+	 </div>
+     <div class="desc">
+      <h5><a href="single_full.html"><?php echo $item['name']; ?></a><span><?php echo $item['category']; ?></span></h5>
+      <p><?php echo $item['description'] ; ?></p>
+      <ul>
+       <li><?php echo $item['feature1']; ?></li>
+       <li><?php echo $item['feature2']; ?></li>
+       <li><?php echo $item['feature3']; ?>  <!-- Tran these are features of project --></li>
+      </ul>
+      <p>
+		  <a class="read_more btn_col" href="<?php echo $this->url(array('module' => 'default', 'controller' => 'portfolio', 'action' => 'details', 'projectname' => $item['name'])) ;?>">Read More<!--Details page link--> </a>
+			<?php if (!empty($item['link'])): ?>
+				<a class="visit_project btn_col" href="<?php echo $item['link']; ?>">Visit Project<!-- link of Project if any--></a>
+			<?php endif; ?> 
+	  </p>
+     </div>    
+    </li>
+   </ul>
+  </div>
+  
+  <?php endforeach; ?>
+	 <div class="pager_nav">	 
+	<?php echo $this->paginationControl($this->data, 'Sliding', 'pagination/pagination.phtml'); ?>
+  </div>
+  <!-- /pager_nav -->
+  <!-- /Long Text Layout 1 Column -->
+ </div>
+</div>
