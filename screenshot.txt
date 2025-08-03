@@ -1,0 +1,26 @@
+SCREENSHOT PLACEHOLDER
+
+This file should be replaced with a screenshot.png file (1200x900px) that shows:
+
+1. The homepage with the hero slider
+2. Portfolio grid layout
+3. Clean, modern design
+4. Professional photography aesthetic
+
+The screenshot should showcase:
+- Hero slider with beautiful photography
+- Portfolio items in a grid layout
+- Modern typography and clean design
+- Responsive layout
+- Professional color scheme
+
+Recommended screenshot content:
+- Wedding photography in the hero slider
+- Various portfolio categories (wedding, portrait, landscape)
+- Clean navigation and footer
+- Professional branding elements
+
+File should be named: screenshot.png
+Dimensions: 1200x900 pixels
+Format: PNG
+Quality: High (for WordPress.org theme directory)
