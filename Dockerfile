@@ -27,6 +27,8 @@ WORKDIR /var/www/html
 RUN chown -R www-data:www-data /var/www/html \
     && composer self-update
 
+RUN a2enmod rewrite
+
 COPY codeigniter.conf /etc/apache2/sites-available/
 RUN a2ensite codeigniter.conf \
     && service apache2 reload || true
