@@ -1,0 +1,11 @@
+diff --git a/vendor/codeigniter4/framework/system/Debug/Exceptions.php b/vendor/codeigniter4/framework/system/Debug/Exceptions.php
+index 1b0c0b1..c2c2a55 100644
+--- a/vendor/codeigniter4/framework/system/Debug/Exceptions.php
++++ b/vendor/codeigniter4/framework/system/Debug/Exceptions.php
+@@
+-			$header = "HTTP/{$this->request->getProtocolVersion()} {$this->response->getStatusCode()} {$this->response->getReason()}";
+-			header($header, true, $statusCode);
++			$header = "HTTP/{$this->request->getProtocolVersion()} {$this->response->getStatusCode()} {$this->response->getReason()}";
++			if (! headers_sent()) {
++				header($header, true, $statusCode);
++			}
